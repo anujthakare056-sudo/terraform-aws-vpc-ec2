@@ -1,0 +1,30 @@
+---
+- name: Install Java and Nginx
+  hosts: webserver
+  become: yes
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Java
+      apt:
+        name: openjdk-17-jdk
+        state: present
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Enable Nginx
+      service:
+        name: nginx
+        enabled: yes
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
