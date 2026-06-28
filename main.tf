@@ -64,7 +64,15 @@ resource "aws_security_group" "main" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
+  } 
+
+ingress {
+  description = "NodePort"
+  from_port   = 30000
+  to_port     = 32767
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+} 
 
   egress {
     description = "Allow all outbound traffic"
